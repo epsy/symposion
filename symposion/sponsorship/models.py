@@ -70,7 +70,7 @@ class SponsorLevel(models.Model):
 class Sponsor(models.Model):
 
     applicant = models.ForeignKey(User, related_name="sponsorships", verbose_name=_("Applicant"),
-                                  null=True)
+                                  null=True, blank=True)
 
     name = models.CharField(_("Sponsor Name"), max_length=100)
     display_url = models.URLField(_("display URL"), blank=True)
