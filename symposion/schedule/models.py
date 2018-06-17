@@ -146,6 +146,10 @@ class Slot(models.Model):
     def rooms(self):
         return Room.objects.filter(pk__in=self.slotroom_set.values("room"))
 
+    @property
+    def rooms_string(self):
+        return ', '.join(map(str, self.rooms))
+
     def save(self, *args, **kwargs):
         roomlist = ' '.join(map(lambda r: r.__unicode__(), self.rooms))
         self.name = "%s %s (%s - %s) %s" % (self.day, self.kind, self.start, self.end, roomlist)

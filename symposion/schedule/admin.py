@@ -24,9 +24,11 @@ class SlotRoomInline(admin.TabularInline):
 
 
 class SlotAdmin(admin.ModelAdmin):
+    def _rooms(obj):
+        return obj.rooms_string
+
     list_filter = ("day", "kind")
-    list_display = ("day", "start", "end", "kind", "content_override")
-    inlines = [SlotRoomInline]
+    list_display = ("day", "start", "end", "kind", _rooms,  "content_override")
 
 
 class RoomAdmin(admin.ModelAdmin):
